@@ -1,0 +1,80 @@
+### Stroke Prediction Project Report
+
+#### **Introduction**
+Stroke is the second leading cause of death globally, responsible for approximately 11% of total deaths according to the World Health Organization (WHO). This project aims to predict the likelihood of a stroke based on various patient attributes, such as age, medical history, and lifestyle factors. The dataset used for this project contains 5,110 records with 12 features.
+
+---
+
+#### **Dataset Overview**
+The dataset includes the following attributes:
+- **Numerical features:** `age`, `avg_glucose_level`, `bmi`.
+- **Categorical features:** `gender`, `ever_married`, `work_type`, `Residence_type`, `smoking_status`.
+- **Binary features:** `hypertension`, `heart_disease`.
+- **Target variable:** `stroke` (1 = stroke, 0 = no stroke).
+
+Key insights from the exploratory analysis:
+- The dataset is imbalanced, with only 4.87% of cases indicating a stroke.
+- Strong predictors of stroke include age, average glucose level, and hypertension.
+- Smoking and marital status also showed minor correlations with stroke.
+
+---
+
+#### **Data Preprocessing**
+1. **Handling Missing Values:**
+   - The `bmi` column had 201 missing values (3.93% of the dataset).
+   - Missing values were imputed using the median.
+
+2. **Feature Engineering:**
+   - Categorical features were encoded using one-hot encoding.
+   - Numerical features (`age`, `avg_glucose_level`, `bmi`) were standardized using z-scores.
+
+3. **Class Imbalance Handling:**
+   - The dataset was balanced using manual oversampling of the minority class (`stroke = 1`).
+
+---
+
+#### **Model Training and Evaluation**
+Two machine learning models were trained and evaluated:
+
+1. **Logistic Regression:**
+   - **Accuracy (Original Data):** 95.11%
+   - **Accuracy (Balanced Data):** 75.44%
+   - **Strengths:** Generalizable and interpretable.
+   - **Weakness:** Struggled with precision for the minority class.
+
+2. **Random Forest Classifier:**
+   - **Accuracy (Original Data):** 95.11%
+   - **Accuracy (Balanced Data):** 100%
+   - **Strengths:** Excellent performance on balanced data; robust to feature importance analysis.
+   - **Weakness:** Risk of overfitting, especially with imbalanced or small datasets.
+
+**Cross-Validation Results:**
+- Logistic Regression: Mean Accuracy = 79.38%, Standard Deviation = 1.05%.
+- Random Forest: Mean Accuracy = 99.13%, Standard Deviation = 0.10%.
+
+---
+
+#### **Feature Importance**
+Top features identified by the Random Forest model:
+1. **Age**: Strongest predictor.
+2. **Average Glucose Level**: Related to health conditions.
+3. **BMI**: Affects overall health and stroke likelihood.
+4. **Age Groups (61–80, 21–40)**: Specific age brackets show significant influence.
+5. **Hypertension and Heart Disease**: Known medical risk factors.
+
+---
+
+#### **Key Challenges and Solutions**
+1. **Class Imbalance:**
+   - Addressed with manual oversampling to balance stroke cases.
+2. **Interpretability:**
+   - Feature importance analysis helped identify the key predictors.
+3. **Overfitting Risk:**
+   - Cross-validation was used to validate model performance.
+
+---
+
+#### **Conclusion**
+This project successfully developed a predictive model for stroke using patient data. The Random Forest classifier demonstrated excellent performance on the balanced dataset, identifying critical risk factors like age, glucose levels, and hypertension. While further validation is required for deployment, the model provides valuable insights into stroke prediction.
+
+
